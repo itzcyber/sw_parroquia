@@ -3467,3 +3467,15 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY Activator 1 0 2021-10-21 15:11:23.935
 !MESSAGE Has main method computation for project 'demo'
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-10-21 15:13:27.296
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.qHPbzDCh
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-10-21 15:13:27.297
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.qHPbzDCh
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-10-21 15:13:27.299
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-10-21 15:13:27.300
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.qHPbzDCh => OK
