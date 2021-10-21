@@ -52,8 +52,8 @@
 		<h2>Registro Personal Parroquia</h2>
 	</div>
 	
-	<div class="pt-3 pb-3">
-		<a th:href="@{/personal/nuevo}" class="btn btn-outline-primary"> Agregar Personal </a>
+	<div>
+		<a th:href="@{/personal/nuevo}"> Agregar Personal </a>
 	</div>
 
 	<div th:if="${mensaje != null}" class="alert alert-success text-center">
