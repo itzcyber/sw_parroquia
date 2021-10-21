@@ -1,0 +1,32 @@
+package com.parroquia.App;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.Rollback;
+
+import com.parroquia.App.models.entities.Role;
+import com.parroquia.App.models.repository.RoleRepository;
+
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+@Rollback(false)
+public class RoleRepositoryTest {
+
+	@Autowired
+	private RoleRepository repo;
+	
+	@Test
+	public void testCrearRol() {
+		
+		Role admin = new Role("Admin", "Gestiona el personal de la parroquia");
+		Role guardarAdmin = repo.save(admin);
+		assertThat(guardarAdmin.getId()).isGreaterThan(0);
+		
+	}
+	
+}

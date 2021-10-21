@@ -1,0 +1,5 @@
+package com.parroquia.App.entities.models;
+
+public class Role {
+
+}

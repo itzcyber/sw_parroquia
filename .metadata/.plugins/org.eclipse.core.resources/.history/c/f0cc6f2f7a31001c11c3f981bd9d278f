@@ -1,0 +1,5 @@
+package com.parroquia.App.models.entities;
+
+public class User {
+
+}
