@@ -1,5 +1,0 @@
-package com.parroquia.App.models.repository;
-
-public interface RoleRepository {
-
-}
