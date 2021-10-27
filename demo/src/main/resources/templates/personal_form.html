@@ -53,8 +53,11 @@
 	</div>
 
 	<form th:action="@{/personal/guardar}" method="post" style="max-width: 700px; margin: 0 auto;"
+			enctype="multipart/form-data"
 			th:object="${user}">
 		
+		<input type="hidden" th:field="*{id}" />
+	
 		<div class="border border-secondary rounded p-5">
 		
 			<div class="form-group row">
@@ -117,6 +120,19 @@
 				</div>	
 			</div>
 			
+			<div class="form-group row">
+				<label class="col-sm-4 col-form-label"> Foto: </label>
+				<div class="col-sm-8"> 
+				<input text="hidden" th:field="*{foto}" />
+					<input type="file" id="fileFoto" name="image" accept="/image/png, /image/jpeg" 
+						class="mb-2"/>
+					<img id="thumbnail" alt="Vista previa de imagen"  th:src="@{${user.FotosPath}} " 
+						class="img-fluid"/>
+						
+				</div>	
+			</div>
+			
+			
 			<div class="text-center">
 				<input type="submit" value="Guardar" class="btn btn-primary m-3"/>
 				<input type="button" value="Cancelar" class="btn btn-secondary" id="botonCancelar"/>
@@ -139,7 +155,33 @@
 			$("#botonCancelar").on("click", function() {
 				window.location = "[[@{/personal-parroquia}]]";
 			});
+			
+			$("#fileFoto").change(function() {
+				fileSize = this.files[0].size;
+				
+				if(fileSize > 1048576) {
+					this.setCustomValidity("¡Debes elegir una imagen de menos de 1 MB!");
+					this.reportValidity();
+				} else {
+					mostrarImagenThumbnail(this);
+				}	
+				
+			});
 		});
+		
+		function mostrarImagenThumbnail(fileInput){
+			var file = fileInput.files[0];
+			var reader = new FileReader();
+			
+			reader.onload = function(e) {
+				$("#thumbnail").attr("src", e.target.result);
+					
+			};
+			
+			reader.readAsDataURL(file);
+			
+		}
+		
 	</script>
 	
 </body>

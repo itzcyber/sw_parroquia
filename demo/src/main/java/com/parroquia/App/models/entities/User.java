@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "users")
@@ -21,7 +22,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(length = 128, nullable = false,  unique = true)
+	@Column(length = 128, nullable = false,  unique = false)
 	private String email;
 	
 	@Column(length = 64, nullable = false)
@@ -143,6 +144,12 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", nombre=" + nombre + ", apellido=" + apellido + ", roles="
 				+ roles + "]";
+	}
+	
+	@Transient
+	public String getFotosPath() {
+		if(id == null || foto == null) return "/images/imagen_default.png";
+		return "/fotos-personal/" + this.id + "/" + this.foto;
 	}
 	
 }

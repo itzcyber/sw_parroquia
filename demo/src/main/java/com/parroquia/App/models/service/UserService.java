@@ -3,6 +3,8 @@ package com.parroquia.App.models.service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import com.parroquia.App.models.entities.Role;
 import com.parroquia.App.models.entities.User;
 
 @Service
+@Transactional
 public class UserService {
 	
 	@Autowired
@@ -35,9 +38,23 @@ public class UserService {
 		return (List<Role>) rolRepo.findAll();
 	}
 
-	public void save(User u) {
-		encodePassword(u);
-		userRepo.save(u);
+	public User save(User u) {
+		
+		boolean actualizacionUser = (u.getId() != null);
+		if (actualizacionUser) {
+			User userActual = userRepo.findById(u.getId()).get();
+			
+			if (u.getPassword().isEmpty()) {
+				u.setPassword(userActual.getPassword());
+			} else {
+				encodePassword(u);
+			}
+			
+		}else {
+			encodePassword(u);
+		}
+		
+		return userRepo.save(u);
 		
 	}
 	
@@ -53,6 +70,22 @@ public class UserService {
 		} catch(NoSuchElementException ex) {
 			throw new UserNotFoundException("No se pude encontrar ningún usuario ID: "+id);
 		}
+	}
+	
+	public void eliminar(Integer id) throws UserNotFoundException {
+		
+		Long countById = userRepo.countById(id);
+		if (countById == null || countById == 0) {
+			throw new UserNotFoundException("No se pude encontrar ningún usuario ID: "+id);
+		}
+		
+		userRepo.deleteById(id);
+	}
+	
+	public void actualizarEstadoUser(Integer u, boolean e) {
+		
+		userRepo.actualizacionEstado(u, e);
+		
 	}
 
 }
