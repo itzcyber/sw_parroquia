@@ -1,0 +1,249 @@
+<!doctype html>
+<html xmlns="https://www.thymeleaf.org" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+<title>Certificados - Parroquia Sagrado Corazón</title>
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"> </script>
+<script type="text/javascript"
+	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"> </script>
+
+<style>
+.imagecontainer {
+	position: relative;
+	width: 100%;
+	max-width: 400px;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .3s ease;
+	border-radius: 50%;
+}
+
+.imagecontainer:hover .overlay {
+	opacity: 1;
+}
+
+.icon {
+	color: white;
+	font-size: 40px;
+	position: absolute;
+	top: 50%;
+	left: 65%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.fa-trash:hover {
+	color: red;
+}
+</style>
+
+</head>
+<body>
+
+	<!-- navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light"
+		style="background-color: #f0ad4e;">
+		<div class="container-fluid">
+
+			<a class="navbar-brand" th:href="@{/}">Parroquia Sagrado Corazón</a>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#topNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="topNavbar">
+
+				<ul class="navbar-nav ml-auto mb-2 mb-lg-0 text-uppercase">
+
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" th:href="@{/}">Inicio</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/personal-parroquia}">Registro Personal</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/certificados-parroquia}">Registro Certificados</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/}">Login</a></li>
+
+				</ul>
+
+			</div>
+
+		</div>
+	</nav>
+	<!-- FIN navbar -->
+
+	<div>
+		<h2 class="mb-3 mt-3">Detalles</h2>
+	</div>
+
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+
+				<table class="table table-striped table-hover">
+
+					<tr>
+						<th>Rut</th>
+						<td th:text="${cliente.rut}"></td>
+					</tr>
+
+					<tr>
+						<th>Nombres</th>
+						<td th:text="${cliente.nombre}"></td>
+					</tr>
+
+					<tr>
+						<th>Apellidos</th>
+						<td th:text="${cliente.apellido}"></td>
+					</tr>
+
+					<tr>
+						<th>Email</th>
+						<td th:text="${cliente.email}"></td>
+					</tr>
+
+					<tr>
+						<th>Certificado</th>
+						<td th:text="${cliente.tipo}"></td>
+					</tr>
+
+				</table>
+
+				<div class="form-group">
+					<label  class="h5"> Descargar</label>
+					<span th:each="file,itrStat : ${clientesFiles}"
+						class="imagecontainer" th:id="'imageindex'+${itrStat.index}">
+						<img th:src="@{'/archivo/' + ${file.modifiedFileName}}"
+						style="width: 80px; height: 80px; border-radius: 50%; margin-left: 10px"
+						class="image"
+						th:if="${file.fileExtension != 'pdf' and file.fileExtension != 'docx'and file.fileExtension != 'doc'}">
+
+						<img th:src="@{'/images/pdf.jpg'}" style="width: 80px; height: 80px; border-radius: 50%; margin-left: 10px"
+						class="image" th:if="${file.fileExtension == 'pdf'}"> 
+						
+						<img th:src="@{'/images/word.png'}" style="width: 80px; height: 80px; border-radius: 50%; margin-left: 10px"
+						class="image" th:if="${file.fileExtension == 'docx' or file.fileExtension == 'doc'}">
+						
+						<span class="overlay"> 
+							<a th:href="@{'/downloadfile/'+${file.fileName}+'/'+${file.modifiedFileName}}" class="icon" title="Borrar archivo">
+									<i class="fa fa-download" style="color: white;"></i>
+							</a>
+
+						</span>
+					</span>
+
+				</div>
+
+
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+
+		<hr />
+
+		<div class="col-md-12">
+
+			<
+			<h2>Tabla Certificados</h2>
+
+			<div class="mt-5">
+
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th scope="col">RUT</th>
+							<th scope="col">EMAIL</th>
+							<th scope="col">NOMBRES</th>
+							<th scope="col">APELLIDOS</th>
+							<th scope="col">CERTIFICADO</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="c : ${clientes}">
+							<td th:text="${c.rut}"></td>
+							<td th:text="${c.email}"></td>
+							<td th:text="${c.nombre}"></td>
+							<td th:text="${c.apellido}"></td>
+							<td th:text="${c.tipo}"></td>
+							<td><a th:href="@{'/editarCliente/'+${c.id}}"> Editar</a>
+								&nbsp;
+							<td><a href="#" class="confirm-delete"
+								th:attr="data-id=${c.id}, data-name=${c.nombre+' '+c.apellido}">
+									Eliminar</a> &nbsp; <a th:href="@{'/detalle/'+${c.id}}"> Editar</a>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+
+
+	</div>
+
+	<!-- Footer -->
+	<footer class=" m-5 mb-0">
+		<div class="container d-flex justify-content-center">
+			<span class="text-dark">Todos Los Derechos Reservados -
+				Parroquia Sagrado Corazón De jesús &copy; 2021.</span>
+		</div>
+	</footer>
+
+	<script type="text/javascript">
+$(function(){
+	
+	$('.confirm-delete').on('click', function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+		var name = $(this).data('name');
+		$("#modal-name").html(name);
+		$("#idModalLink").attr('href','/eliminarCertificado/'+id);
+		$("#myModal").modal();
+	});
+
+});
+</script>
+
+	<div class="modal fade" id="myModal" tabindex="-1"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body" id="myModalBody">
+					<p>
+						¿Quieres borrar este registro de (<span id="modal-name"></span>)?
+					</p>
+				</div>
+				<div class="modal-footer">
+					<a id="idModalLink" href="#" class="btn btn-primary"> Si </a>
+					<button type="button" class="btn btn-default" data-dismiss=modal>
+						No</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
