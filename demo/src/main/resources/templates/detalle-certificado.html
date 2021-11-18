@@ -126,6 +126,11 @@
 						<th>Certificado</th>
 						<td th:text="${cliente.tipo}"></td>
 					</tr>
+					
+					<tr>
+						<th>Clave</th>
+						<td>[[${_csrf.token}]]</td>
+					</tr>
 
 				</table>
 

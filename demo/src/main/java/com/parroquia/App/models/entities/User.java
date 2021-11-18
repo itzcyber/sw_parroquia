@@ -24,7 +24,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(length = 128, nullable = false,  unique = false)
+	@Column(length = 128, nullable = false,  unique = true)
 	private String email;
 	
 	@Column(length = 64, nullable = false)
@@ -44,7 +44,8 @@ public class User {
 	@Column(length = 45, nullable = false)
 	private String capilla;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	
+	@ManyToMany //(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "users_roles",
 			joinColumns = @JoinColumn(name = "user_id"),

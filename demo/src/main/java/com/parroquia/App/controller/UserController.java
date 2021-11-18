@@ -97,10 +97,13 @@ public class UserController {
 	}
 	 
 	@GetMapping("/personal/eliminar/{id}")
-	public String eliminarUser(@PathVariable(name = "id") Integer id, Model m, RedirectAttributes ra) {
+	public String eliminarUser(@PathVariable(name = "id") Integer id, RedirectAttributes ra) {
 		try {
+			User u = new User();
+			
 			service.eliminar(id);
 			ra.addFlashAttribute("mensaje","El usuario ha sido eliminado con éxito");
+			
 			return "personal_form";
 			
 		}catch(UserNotFoundException ex) {
