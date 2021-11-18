@@ -72,6 +72,7 @@ public class UserService {
 		}
 	}
 	
+	
 	public void eliminar(Integer id) throws UserNotFoundException {
 		
 		Long countById = userRepo.countById(id);

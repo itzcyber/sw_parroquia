@@ -45,7 +45,7 @@ public class CertificadoUpload {
 		}else {
 			m.addAttribute("error", "El usuario no se guardó correctamente, por favor inténtelo de nuevo.");
 			m.addAttribute("cliente", c);
-			return "redirect/:certificados-parroquia";
+			return "redirect:/certificados-parroquia";
 		}
 		
 	}
@@ -77,7 +77,7 @@ public class CertificadoUpload {
 		}else {
 			m.addAttribute("error", "El usuario no se actualizó, por favor inténtelo de nuevo.");
 			m.addAttribute("cliente", c);
-			return "redirect/:certificados-parroquia";
+			return "redirect:/certificados-parroquia";
 		}
 	}
 	
@@ -88,7 +88,7 @@ public class CertificadoUpload {
 		clienteService.deleteCliente(id);
 		ra.addFlashAttribute("exito","El usuario se eliminó con éxito");
 		
-		return "redirect/:certificados";
+		return "redirect:/certificados-parroquia";
 	}
 	
 	
