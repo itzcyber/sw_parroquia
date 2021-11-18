@@ -1,7 +1,9 @@
 package com.parroquia.App.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,21 +33,39 @@ public class UserController {
 	 * @return 
 	 */
 	@GetMapping("/personal-parroquia")
-	public String listAll(Model m) {
+	public String listAll(Model m, Map <String, Object> model) {
 		List<User> listaU = service.listAll();
 		m.addAttribute("listaUsuarios",listaU);
+		model.put("listaCapillas", listaCapillas);
 		
 		return "personal";
 	}
 	
+	
+	/**
+	 * Dropdown lista parroquia
+	 */
+	static List<String> listaCapillas = null;
+	static {
+	
+		listaCapillas = new ArrayList<>();
+		listaCapillas.add("San Sebastian");
+		listaCapillas.add("Lourdes");
+		listaCapillas.add("San Pablo");
+		listaCapillas.add("Sagrada Familia");
+		listaCapillas.add("Chacra");
+		
+	}
+	
 	@GetMapping("/personal/nuevo")
-	public String nuevoUser(Model m) {
+	public String nuevoUser(Model m, Map <String, Object> model) {
 		List<Role> listaR = service.listRoles();
 		
 		User u = new User();
 		u.setEnabled(true);
 		
 		m.addAttribute("user", u);
+		model.put("listaCapillas", listaCapillas);
 		m.addAttribute("listaRoles", listaR);
 		m.addAttribute("titulo", "Registrar personal");
 		
@@ -79,12 +99,13 @@ public class UserController {
 	}
 	
 	@GetMapping("/personal/editar/{id}")
-	public String editarUser(@PathVariable(name = "id") Integer id, Model m, RedirectAttributes ra) {
+	public String editarUser(@PathVariable(name = "id") Integer id, Model m, Map <String, Object> model, RedirectAttributes ra) {
 		try {
 			User u = service.get(id);
 			List<Role> listaR = service.listRoles();
 			
 			m.addAttribute("user",u);
+			model.put("listaCapillas", listaCapillas);
 			m.addAttribute("titulo", "Editar personal (ID: "+id+")");
 			m.addAttribute("listaRoles", listaR);
 			

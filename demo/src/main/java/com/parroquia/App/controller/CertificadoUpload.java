@@ -2,6 +2,7 @@ package com.parroquia.App.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,20 +23,36 @@ public class CertificadoUpload {
 	@Autowired
 	private ClienteService clienteService;
 	
+	/**
+	 * Dropdown lista de certificados
+	 */
+	static List<String> listaCertificados = null;
+	static {
+	
+		listaCertificados = new ArrayList<>();
+		listaCertificados.add("Bautizo");
+		listaCertificados.add("Comunion");
+		listaCertificados.add("Confirmacion");
+		listaCertificados.add("Matrimonio");
+		
+	}
+	
+	
 	@GetMapping("/certificados-parroquia")
-	public String clientes(Model m) {
+	public String clientes(Model m, Map<String, Object> model) {
 		
 		List<Cliente> clientes = clienteService.listAll();
 		m.addAttribute("clientes", clientes);
 		m.addAttribute("cliente", new Cliente());
 		m.addAttribute("clientesFiles", new ArrayList<CertificadosClientes>());
+		model.put("listaCertificados", listaCertificados);
 		m.addAttribute("agregar", true);
 		
 		return "certificados";
 	}
 	
 	@PostMapping("/guardar")
-	public String guardar(@ModelAttribute Cliente c, RedirectAttributes ra, Model m) {
+	public String guardar(@ModelAttribute Cliente c, Model m, Map<String, Object> model, RedirectAttributes ra ) {
 		
 		Cliente dbCliente = clienteService.save(c);
 		
@@ -45,6 +62,7 @@ public class CertificadoUpload {
 		}else {
 			m.addAttribute("error", "El usuario no se guardó correctamente, por favor inténtelo de nuevo.");
 			m.addAttribute("cliente", c);
+			model.put("listaCertificados", listaCertificados);
 			return "redirect:/certificados-parroquia";
 		}
 		
@@ -52,7 +70,7 @@ public class CertificadoUpload {
 	
 	
 	@GetMapping("/editarCliente/{id}")
-	public String editarClientes(@PathVariable Integer id, Model m) {
+	public String editarClientes(@PathVariable Integer id, Model m, Map<String, Object> model) {
 		
 		Cliente c = clienteService.findById(id);
 		List<CertificadosClientes> certificadosClientes = clienteService.findFilesByClienteId( id);
@@ -61,13 +79,14 @@ public class CertificadoUpload {
 		m.addAttribute("clientes", clientes);
 		m.addAttribute("cliente", c);
 		m.addAttribute("clientesFiles", certificadosClientes);
+		model.put("listaCertificados", listaCertificados);
 		m.addAttribute("agregar", false);
 		
 		return "certificados";
 	}
 	
 	@PostMapping("/actualizar")
-	public String actualizar(@ModelAttribute Cliente c, RedirectAttributes ra, Model m) {
+	public String actualizar(@ModelAttribute Cliente c, Model m, Map<String, Object> model, RedirectAttributes ra) {
 		
 		Cliente dbCliente = clienteService.update(c);
 		
@@ -77,6 +96,7 @@ public class CertificadoUpload {
 		}else {
 			m.addAttribute("error", "El usuario no se actualizó, por favor inténtelo de nuevo.");
 			m.addAttribute("cliente", c);
+			model.put("listaCertificados", listaCertificados);
 			return "redirect:/certificados-parroquia";
 		}
 	}
