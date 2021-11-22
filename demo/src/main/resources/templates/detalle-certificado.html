@@ -124,11 +124,20 @@
 
 					<tr>
 						<th>Certificado</th>
+<<<<<<< HEAD
 						<td th:text="${cliente.tipo}">
 					</tr>
 					
 					<tr>
 						<td> <a href="#" > Crear clave de acceso </a> </td>
+=======
+						<td th:text="${cliente.tipo}"></td>
+					</tr>
+					
+					<tr>
+						<th>Clave</th>
+						<td>[[${_csrf.token}]]</td>
+>>>>>>> 3ba366367d4f34cf11061b42b4c4367f1c551463
 					</tr>
 
 				</table>

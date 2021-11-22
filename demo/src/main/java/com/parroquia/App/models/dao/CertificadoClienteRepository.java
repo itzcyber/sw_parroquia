@@ -21,6 +21,9 @@ public interface CertificadoClienteRepository extends CrudRepository<Certificado
 	@Query("delete from CertificadosClientes as c where c.cliente.id = ?1 ")
 	void deleteFilesByClienteId(Integer id);
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 3ba366367d4f34cf11061b42b4c4367f1c551463
 }
