@@ -1,0 +1,134 @@
+<!doctype html>
+<html xmlns="https://www.thymeleaf.org" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+<title>Certificados - Parroquia Sagrado Corazón</title>
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"> </script>
+<script type="text/javascript"
+	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"> </script>
+
+<style>
+.imagecontainer {
+	position: relative;
+	width: 100%;
+	max-width: 400px;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .3s ease;
+	border-radius: 50%;
+}
+
+.imagecontainer:hover .overlay {
+	opacity: 1;
+}
+
+.icon {
+	color: white;
+	font-size: 40px;
+	position: absolute;
+	top: 50%;
+	left: 65%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.fa-trash:hover {
+	color: red;
+}
+</style>
+
+</head>
+<body>
+
+	<!-- navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light"
+		style="background-color: #f0ad4e;">
+		<div class="container-fluid">
+
+			<a class="navbar-brand" th:href="@{/}">Parroquia Sagrado Corazón</a>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#topNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="topNavbar">
+
+				<ul class="navbar-nav ml-auto mb-2 mb-lg-0 text-uppercase">
+
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" th:href="@{/}">Inicio</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/personal-parroquia}">Registro Personal</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/certificados-parroquia}">Registro Certificados</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/}">Login</a></li>
+
+				</ul>
+
+			</div>
+
+		</div>
+	</nav>
+	<!-- FIN navbar -->
+
+	<div>
+		<h2 class="mb-3 mt-3">Clave de acceso</h2>
+	</div>
+
+
+	<div>
+
+		<table class="table table-striped table-hover">
+
+					<tr>
+						<th>Rut</th>
+						<td th:text="${cliente.rut}"></td>
+					</tr>
+
+					<tr>
+						<th>Nombres</th>
+						<td th:text="${cliente.nombre}"></td>
+					</tr>
+
+					<tr>
+						<th>Apellidos</th>
+						<td th:text="${cliente.apellido}"></td>
+					</tr>
+
+					<tr>
+						<th>Email</th>
+						<td th:text="${cliente.email}"></td>
+					</tr>
+
+					<tr>
+						<th>Clave</th>
+						<td th:text="${clienteCertificado}"> </td>
+						
+					</tr>
+					
+				</table>
+
+	</div>
+
+
+</body>
+</html>

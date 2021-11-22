@@ -1,0 +1,311 @@
+<!doctype html>
+<html xmlns="https://www.thymeleaf.org" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+<title>Certificados - Parroquia Sagrado Corazón</title>
+
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+	crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"> </script>
+<script type="text/javascript"
+	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"> </script>
+	
+	<style>
+		.imagecontainer {
+			position: relative;
+			width: 100%;
+			max-width: 400px;
+		}
+		
+		.overlay {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 100%;
+			width: 100%;
+			opacity: 0;
+			transition: .3s ease;
+			border-radius: 50%;
+		}
+		
+		.imagecontainer:hover .overlay{
+			opacity: 1;
+		}
+		
+		.icon{
+			color: white;
+			font-size: 40px;
+			position: absolute;
+			top: 50%;
+			left: 65%;
+			transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			text-align: center;
+		}
+		
+		.fa-trash:hover {
+			color: red;
+		}
+	</style>
+
+</head>
+<body>
+
+	<!-- navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light"
+		style="background-color: #f0ad4e;">
+		<div class="container-fluid">
+
+			<a class="navbar-brand" th:href="@{/}">Parroquia Sagrado Corazón</a>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#topNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="topNavbar">
+
+				<ul class="navbar-nav ml-auto mb-2 mb-lg-0 text-uppercase">
+
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" th:href="@{/}">Inicio</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/personal-parroquia}">Registro Personal</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/certificados-parroquia}">Registro Certificados</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/}">Login</a></li>
+
+				</ul>
+
+			</div>
+
+		</div>
+	</nav>
+	<!-- FIN navbar -->
+
+	<div>
+		<h2 class="mb-3 mt-3">Parroquia Sagrado Corazón</h2>
+	</div>
+
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				
+				<div class="alert alert-success alert-dismissible" th:if="${exito}")>
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong th:text="${exito}"></strong> 
+				</div>
+				
+				<div class="alert alert-danger alert-dismissible" th:if="${error}")>
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong th:text="${error}"></strong> 
+				</div>
+				
+				<form th:action="@{${agregar} ? '/guardar' : '/actualizar' }" th:object="${cliente}"  style="max-width: 700px; margin: 0 auto;"
+					method="post" enctype="multipart/form-data">
+					
+					<div class="border border-secondary rounded p-5">
+					
+					<h2 class="pt-2 pb-5">Registrar Certificado</h2>
+					
+						<div class="form-group row">
+							<label class="col-sm-4 col-form-label"> Rut: </label>
+							<div class="col-sm-8"> 
+								<input type="text" class="form-control" th:field="*{rut}" required />
+							</div>	
+						</div>
+						
+						<div class="form-group row">
+							<label class="col-sm-4 col-form-label"> Email: </label>
+							<div class="col-sm-8"> 
+								<input type="email" class="form-control" th:field="*{email}" required minlength="8" maxlength="128" />
+							</div>	
+						</div>
+									
+						<div class="form-group row">
+							<label class="col-sm-4 col-form-label"> Nombres: </label>
+							<div class="col-sm-8"> 
+								<input type="text" class="form-control" th:field="*{nombre}" required minlength="3" maxlength="45" />
+							</div>	
+						</div>
+						
+						<div class="form-group row">
+							<label class="col-sm-4 col-form-label"> Apellidos: </label>
+							<div class="col-sm-8"> 
+								<input type="text" class="form-control" th:field="*{apellido}" required minlength="3" maxlength="45" />
+							</div>	
+						</div>
+						
+						<!-- 
+						<div class="form-group row">
+							<label class="col-sm-4 col-form-label"> Tipo de Certifcado: </label>
+							<div class="col-sm-8"> 
+								<input type="text" class="form-control" th:field="*{tipo}" required minlength="3" maxlength="45" />
+							</div>	
+						</div>
+						 -->
+						 
+						<div class="form-group row">
+							<label class="col-sm-4 col-form-label"> Tipo de Certifcado: </label>	
+							<div class="col-sm-8">					 
+								<select th:field="*{tipo}" class="form-select mb-4">
+										<option th:each="tipo : ${listaCertificados}" th:value="${tipo}"
+											th:text="${tipo}" />
+								</select>
+							</div>	
+						</div>
+						
+						<div class="form-group row">
+							<label class="col-sm-4 col-form-label"> Subir Certificado: </label>
+							<div class="col-sm-8"> 
+								<input type="file" class="form-control" th:field="*{files}" />
+							</div>	
+						</div>
+						
+						<div class="form-group">
+						
+							<span th:each="file,itrStat : ${clientesFiles}" class="imagecontainer" th:id="'imageindex'+${itrStat.index}"> 
+								<img th:src="@{'/archivo/' + ${file.modifiedFileName}}" style="width: 80px; height: 80px; border-radius: 50%; margin-left: 10px" 
+									class="image" th:if="${file.fileExtension != 'pdf' and file.fileExtension != 'docx'and file.fileExtension != 'doc'}">
+								
+								<img th:src="@{'/images/pdf.jpg'}" style="width: 80px; height: 80px; border-radius: 50%; margin-left: 10px" 
+									class="image" th:if="${file.fileExtension == 'pdf'}">
+									
+								<img th:src="@{'/images/word.png'}" style="width: 80px; height: 80px; border-radius: 50%; margin-left: 10px" 
+									class="image" th:if="${file.fileExtension == 'docx' or file.fileExtension == 'doc'}">
+									<span class="overlay">
+									
+										<a href="#" class="icon image-confirm-delete" title="Borrar archivo" th:attr="data-id=${itrStat.index}, data-name=${file.modifiedFileName}">
+											<i class="fa fa-trash" style="color: red;"></i>
+										</a>
+									
+									</span>
+							</span>
+						
+						</div>
+						
+						<input type="hidden" class="form-control" th:field="*{removefiles}" id="removefiles">
+						<input type="hidden" class="form-control" th:field="*{id}" >
+						
+						<div class="text-center">
+							<button type="submit" th:text="${agregar}?'guardar':'actulaizar'" class="btn btn-primary m-3"></button>
+							<input type="button" value="Cancelar" class="btn btn-secondary" id="botonCancelar"/>
+						</div>
+					
+					</div>
+				
+				</form>
+				
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		
+		<hr/>
+		
+		<div class="col-md-12">
+		
+		<<h2>Tabla Certificados</h2>
+		
+			<div class="mt-5">
+				
+				<table class="table table-striped table-hover">	
+					<thead>
+						<tr>
+							<th scope="col">RUT</th>
+							<th scope="col">EMAIL</th>
+							<th scope="col">NOMBRES</th>
+							<th scope="col">APELLIDOS</th>
+							<th scope="col">CERTIFICADO</th>
+							<th scope="col"></th>
+						</tr>
+				   </thead>
+					<tbody>
+						<tr th:each="c : ${clientes}">
+							<td th:text="${c.rut}"></td>
+							<td th:text="${c.email}"></td>
+							<td th:text="${c.nombre}"></td>
+							<td th:text="${c.apellido}"></td>
+							<td th:text="${c.tipo}"></td>
+							<td> <a th:href="@{'/editarCliente/'+${c.id}}"> Editar</a> 
+							&nbsp; 
+							<td> <a href="#" class="confirm-delete" th:attr="data-id=${c.id}, data-name=${c.nombre+' '+c.apellido}"> Eliminar</a> 
+							&nbsp;
+							<a th:href="@{'/detalle/'+${c.id}}"> Detalles</a> 
+							&nbsp;
+							<a th:href="@{'/clave-acceso/'+${c.id}}"> Crear clave de acceso</a> 
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+			</div>
+		
+		</div>
+		
+		
+	</div>
+
+	<!-- Footer -->
+	<footer class=" m-5 mb-0">
+		<div class="container d-flex justify-content-center">
+			<span class="text-dark">Todos Los Derechos Reservados -
+				Parroquia Sagrado Corazón De jesús &copy; 2021.</span>
+		</div>
+	</footer>
+
+<script type="text/javascript">
+$(function(){
+	var images = [];
+	$('.image-confirm-delete').on('click', function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+		var name = $(this).data('name');
+		images.push(name);
+		$('#removefiles').val(images);
+		$('#imageindex'+id).hide(); 	
+	});
+	
+	$('.confirm-delete').on('click', function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+		var name = $(this).data('name');
+		$("#modal-name").html(name);
+		$("#idModalLink").attr('href','/eliminarCertificado/'+id);
+		$("#myModal").modal();
+	});
+
+});
+</script>
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body" id="myModalBody">
+				<p>¿Quieres borrar este registro de (<span id="modal-name"></span>)?</p>
+			</div>
+			<div class="modal-footer">
+				<a id="idModalLink" href="#" class="btn btn-primary"> Si </a>
+				<button type="button" class="btn btn-default" data-dismiss=modal > No </button>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
