@@ -57,12 +57,10 @@ public class Cliente {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
-<<<<<<< HEAD
 	
 	@Column(name = "clave_acceso")
 	private String token;
-=======
->>>>>>> 3ba366367d4f34cf11061b42b4c4367f1c551463
+
 
 	@Transient
 	private List<MultipartFile> files = new ArrayList<MultipartFile>();
@@ -151,7 +149,6 @@ public class Cliente {
 		this.tipo = tipo;
 	}
 
-<<<<<<< HEAD
 	public String getToken() {
 		return token;
 	}
@@ -160,8 +157,4 @@ public class Cliente {
 		this.token = token;
 	}
 	
-	
-
-=======
->>>>>>> 3ba366367d4f34cf11061b42b4c4367f1c551463
 }

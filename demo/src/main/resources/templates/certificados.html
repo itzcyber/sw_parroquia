@@ -18,6 +18,7 @@
 	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+
 <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"> </script>
 <script type="text/javascript"
 	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"> </script>
@@ -247,12 +248,8 @@
 							<td> <a href="#" class="confirm-delete" th:attr="data-id=${c.id}, data-name=${c.nombre+' '+c.apellido}"> Eliminar</a> 
 							&nbsp;
 							<a th:href="@{'/detalle/'+${c.id}}"> Detalles</a> 
-<<<<<<< HEAD
 							&nbsp;
 							<a th:href="@{'/clave-acceso/'+${c.id}}"> Crear clave de acceso</a> 
-=======
-							
->>>>>>> 3ba366367d4f34cf11061b42b4c4367f1c551463
 							</td>
 						</tr>
 					</tbody>

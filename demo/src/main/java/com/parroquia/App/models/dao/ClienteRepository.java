@@ -6,4 +6,6 @@ import com.parroquia.App.models.entities.Cliente;
 
 public interface ClienteRepository extends CrudRepository<Cliente, Integer>{
 
+	void save(String token);
+
 }

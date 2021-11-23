@@ -35,10 +35,7 @@ public class CertificadosClientes implements Serializable{
 	@Column(name = "extension_archivo")
 	private String fileExtension;
 	
-<<<<<<< HEAD
-	
-=======
->>>>>>> 3ba366367d4f34cf11061b42b4c4367f1c551463
+
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
@@ -84,11 +81,7 @@ public class CertificadosClientes implements Serializable{
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-<<<<<<< HEAD
-=======
 
-	
->>>>>>> 3ba366367d4f34cf11061b42b4c4367f1c551463
 	
 	
 }
