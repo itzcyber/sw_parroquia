@@ -5,18 +5,18 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.parroquia.App.models.dao.CertificadoClienteRepository;
 import com.parroquia.App.models.entities.CertificadosClientes;
 import com.parroquia.App.models.entities.Cliente;
 import com.parroquia.App.models.service.ClienteService;
@@ -25,7 +25,7 @@ import com.parroquia.App.models.service.ClienteService;
 public class CrearToken {
 
 	@Autowired private ClienteService clienteService;
-	@Autowired private CertificadoClienteRepository certificadoClienteRepo;
+	
 	/**
 	@GetMapping("/clave-acceso")
 	public String listar(Model m, @RequestParam String fileName) throws UnsupportedEncodingException, NoSuchAlgorithmException {
@@ -79,6 +79,12 @@ public class CrearToken {
 	}
 	
 	
-	
+	@GetMapping("/cliente/{id}/token/{clave}")
+	public String crearClave(@PathVariable("id") Integer id, @PathVariable("clave") String token) {
+		
+		clienteService.saveToken(id, token);
+		
+		return "redirect:/clave-acceso/{id}";
+	}
 	
 }

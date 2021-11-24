@@ -65,58 +65,54 @@
 
 	<div>
 		
-		
+			<input type="hidden" th:field="*{id}" />
 			<table class="table table-striped table-hover">
-
+				
 				<tr>
 					<th>Rut</th>
-					<td th:text="${cliente.rut}"></td>
+					<!-- <td th:text="${cliente.rut}"> </td> -->
+					<td> [[${cliente.rut}]] </td>
 				</tr>
 
 				<tr>
 					<th>Nombres</th>
-					<td th:text="${cliente.nombre}"></td>
+					<td> [[${cliente.nombre}]] </td>
+					<!-- <td th:text="${cliente.nombre}"></td> -->
 				</tr>
 
 				<tr>
 					<th>Apellidos</th>
-					<td th:text="${cliente.apellido}"></td>
+					<!-- <td th:text="${cliente.apellido}"></td> -->
+					<td> [[${cliente.rut}]] </td>
 				</tr>
 
 				<tr>
 					<th>Email</th>
-					<td th:text="${cliente.email}"></td>
+					<!-- <td th:text="${cliente.email}"></td> -->
+					<td> [[${cliente.email}]] </td>
 				</tr>
 
 
 				<tr>
 
 					<th>Clave</th>
-					<td th:text="${clienteCertificado}">
+					
+					<td th:text="${clienteCertificado}">&nbsp; <td>
+					
+				</tr>
+				
+				<tr>
+				<th></th>
+					<td>
+					<a th:href="@{'/cliente/' + ${cliente.id} + '/token/'+ ${clienteCertificado}}" > guardar </a>
 					</td>
 				</tr>
 
 			</table>
-	
-		<form th:action="@{/guardar}" method="post" >
-		
-			<div class="form-group row">
-				
-				<div class="col-sm-8"> 
-					<input type="hidden" name="token" th:value="${clienteCertificado}"/>
-				</div>	
-				
-				<div class="text-center">
-					<input type="submit" value="Guardar"class="btn btn-primary" /> 
-					&nbsp; <input type="button" value="Cancelar" class="btn btn-secondary" /> 
-					
-				</div>
-				
-			</div>
-		
-		</form>
+			
+	<!--
 		&nbsp; 
-		<!-- <a class="btn btn-danger btn-xs" th:href="@{'/clave-acceso/' + ${id}(format=pdf)}"> PDF </a> -->
+		 <a class="btn btn-danger btn-xs" th:href="@{'/clave-acceso/' + ${id}(format=pdf)}"> PDF </a> -->
 
 	</div>
 

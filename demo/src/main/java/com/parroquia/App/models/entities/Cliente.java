@@ -67,6 +67,20 @@ public class Cliente {
 
 	@Transient
 	private List<String> removefiles = new ArrayList<String>();
+	
+
+
+	public Cliente() {
+		
+	}
+	
+	
+
+	public Cliente(String token) {
+		
+		this.token = token;
+	}
+
 
 
 	public Integer getId() {

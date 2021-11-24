@@ -150,6 +150,10 @@ public class ClienteService {
 		clienteRepo.deleteById(id);
 	}
 
+	public void saveToken(Integer id, String token) {
+		
+		clienteRepo.saveToken(id, token);
 
+	}
 	
 }
