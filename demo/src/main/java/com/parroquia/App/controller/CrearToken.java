@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.parroquia.App.models.entities.CertificadosClientes;
 import com.parroquia.App.models.entities.Cliente;
@@ -25,22 +26,12 @@ import com.parroquia.App.models.service.ClienteService;
 public class CrearToken {
 
 	@Autowired private ClienteService clienteService;
-	
-	/**
-	@GetMapping("/clave-acceso")
-	public String listar(Model m, @RequestParam String fileName) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-		
-		m.addAttribute("guardar", sha256(fileName));
-		
-		return "clave-acceso";
-	}**/
-	
+
 	
 	@GetMapping("/clave-acceso/{id}")
 	public String detalleClientes(@PathVariable Integer id, Model m) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 		
 		Cliente c = clienteService.findById(id);
-		//CertificadosClientes cc = new CertificadosClientes();
 		List<CertificadosClientes> certificadosClientes = clienteService.findFilesByClienteId( id);
 		List<Cliente> clientes = clienteService.listAll();
 		
@@ -71,7 +62,7 @@ public class CrearToken {
 		
 		for (int i = 0; i < arrayBytes.length; i++) {
 			
-			stringBuffer.append(Integer.toString((arrayBytes[i] & 0xff) + 0x100, 16)
+			stringBuffer.append(Integer.toString((arrayBytes[i] & 0xff) + 0x1, 16)
                     .substring(1));
 		}
 		
@@ -80,9 +71,11 @@ public class CrearToken {
 	
 	
 	@GetMapping("/cliente/{id}/token/{clave}")
-	public String crearClave(@PathVariable("id") Integer id, @PathVariable("clave") String token) {
+	public String crearClave(@PathVariable("id") Integer id, @PathVariable("clave") String token, RedirectAttributes re) {
 		
 		clienteService.saveToken(id, token);
+		
+		re.addFlashAttribute("mensaje", "La clave de acceso se ha guardado correctamente.");
 		
 		return "redirect:/clave-acceso/{id}";
 	}

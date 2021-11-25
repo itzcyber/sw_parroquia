@@ -212,7 +212,7 @@
 		
 		<div class="col-md-12">
 		
-		<<h2>Tabla Certificados</h2>
+		<h2>Tabla Certificados</h2>
 		
 			<div class="mt-5">
 				
@@ -224,7 +224,7 @@
 							<th scope="col">NOMBRES</th>
 							<th scope="col">APELLIDOS</th>
 							<th scope="col">CERTIFICADO</th>
-							<th scope="col"></th>
+							<th scope="col"> </th>
 						</tr>
 				   </thead>
 					<tbody>
@@ -234,13 +234,17 @@
 							<td th:text="${c.nombre}"></td>
 							<td th:text="${c.apellido}"></td>
 							<td th:text="${c.tipo}"></td>
-							<td> <a th:href="@{'/editarCliente/'+${c.id}}"> Editar</a> 
-							&nbsp; 
-							<td> <a href="#" class="confirm-delete" th:attr="data-id=${c.id}, data-name=${c.nombre+' '+c.apellido}"> Eliminar</a> 
-							&nbsp;
-							<a th:href="@{'/detalle/'+${c.id}}"> Detalles</a> 
-							&nbsp;
-							<a th:href="@{'/clave-acceso/'+${c.id}}"> Crear clave de acceso</a> 
+							<td> <a class="btn btn-outline-success btn-xs"
+							th:href="@{'/editarCliente/'+${c.id}}"> Editar</a>&nbsp;&nbsp;&nbsp;
+							 					
+							<a href="#" class="confirm-delete btn btn-outline-danger btn-xs" 
+							th:attr="data-id=${c.id}, data-name=${c.nombre+' '+c.apellido}"> Eliminar</a>&nbsp;&nbsp;&nbsp; 
+													
+							<a class="btn btn-outline-info btn-xs" 
+							th:href="@{'/detalle/'+${c.id}}"> Detalles</a>&nbsp;&nbsp;&nbsp;
+							 					
+							<a class="btn btn-outline-warning btn-xs" 
+							th:href="@{'/clave-acceso/'+${c.id}}"> Clave </a>
 							</td>
 						</tr>
 					</tbody>
