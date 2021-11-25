@@ -97,9 +97,9 @@
 					title="Activar este usuario"></a> </td>
 					
 					<td>[[${user.capilla}]]</td>
-					<td> <a th:href="@{'/personal/editar/'+ ${user.id}}" title="Editar este usuario"> Editar </a>
+					<td> <a class="btn btn-outline-success" th:href="@{'/personal/editar/'+ ${user.id}}" title="Editar este usuario"> Editar </a>
 					&nbsp; 
-					<a th:href="@{'/personal/eliminar/'+ ${user.id}}"  title="Eliminar este usuario" >Eliminar</a> </td>
+					<a class="btn btn-outline-danger" th:href="@{'/personal/eliminar/'+ ${user.id}}"  title="Eliminar este usuario" >Eliminar</a> </td>
 					<td></td>
 					
 				</tr>

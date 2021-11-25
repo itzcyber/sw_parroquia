@@ -63,6 +63,25 @@ public class UserService {
 		String encodedP = paswordE.encode(u.getPassword());
 		u.setPassword(encodedP);
 	}
+	
+	public boolean isEmailUnique(Integer id, String email) {
+		
+		User userByEmail = userRepo.getUserByEmail(email);
+		
+		if(userByEmail == null) return true;
+		
+		boolean creandoNuevo = (id == null);
+		
+		if(creandoNuevo) {
+			if(userByEmail != null) return false;
+		} else {
+			if(userByEmail.getId() != id) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
 
 	public User get(Integer id) throws UserNotFoundException {
 		try {

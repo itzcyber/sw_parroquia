@@ -63,8 +63,9 @@
 
 	<div class="container my-5">
 	
-	<div th:if="${mensaje != null}" class="alert alert-success text-center">
+	<div th:if="${mensaje != null}" class="alert alert-success alert-dismissible text-center">
 	
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		[[${mensaje}]]
 	
 	</div>
@@ -99,7 +100,7 @@
 
 				<tr>
 					<th>Clave</th>
-					<td th:text="${clienteCertificado}"><td>				
+					<td th:text="${clienteCertificado}"> <td>				
 				</tr>
 
 			</table>
@@ -108,7 +109,7 @@
 				<a th:if="${#strings.isEmpty(cliente.token)}"
 					class="btn btn-outline-primary" th:href="@{'/cliente/' + ${cliente.id} + '/token/'+ ${clienteCertificado}}" > Guardar </a>
 					&nbsp;
-				<input type="button" value="Cancelar" class="btn btn-outline-secondary" id="botonCancelar"/>
+				<input type="button" value="Volver" class="btn btn-outline-secondary" id="botonCancelar"/>
 					&nbsp;
 				<a th:if="${!#strings.isEmpty(cliente.token)}" 
 		 			class="btn btn-outline-danger btn-xs" th:href="@{'/clave-acceso/' + ${id}(format=pdf)}"> PDF </a> 

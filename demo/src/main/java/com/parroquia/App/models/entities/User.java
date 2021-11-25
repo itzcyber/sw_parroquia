@@ -3,10 +3,8 @@ package com.parroquia.App.models.entities;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +22,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(length = 128, nullable = false,  unique = true)
+	@Column(length = 128, nullable = false, unique = true)
 	private String email;
 	
 	@Column(length = 64, nullable = false)

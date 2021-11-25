@@ -203,7 +203,7 @@
 					</div>
 				
 				</form>
-				
+
 			</div>
 			<div class="col-md-2"></div>
 		</div>
@@ -234,8 +234,8 @@
 							<td th:text="${c.nombre}"></td>
 							<td th:text="${c.apellido}"></td>
 							<td th:text="${c.tipo}"></td>
-							<td> <a class="btn btn-outline-success btn-xs"
-							th:href="@{'/editarCliente/'+${c.id}}"> Editar</a>&nbsp;&nbsp;&nbsp;
+							<td> <a class="btn btn-outline-success btn-xs" 
+							th:href="@{'/editarCliente/'+${c.id}}" > Editar</a>&nbsp;&nbsp;&nbsp;
 							 					
 							<a href="#" class="confirm-delete btn btn-outline-danger btn-xs" 
 							th:attr="data-id=${c.id}, data-name=${c.nombre+' '+c.apellido}"> Eliminar</a>&nbsp;&nbsp;&nbsp; 
@@ -256,6 +256,7 @@
 		
 		
 	</div>
+
 
 	<!-- Footer -->
 	<footer class=" m-5 mb-0">
