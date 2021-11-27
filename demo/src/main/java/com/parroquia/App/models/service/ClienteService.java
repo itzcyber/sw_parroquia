@@ -156,4 +156,10 @@ public class ClienteService {
 
 	}
 	
+	public List<Cliente> findByKeyword(String keyword) {	
+			
+			return clienteRepo.findByKeyword(keyword);
+
+	}
+	
 }

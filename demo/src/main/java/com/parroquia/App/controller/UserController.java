@@ -46,18 +46,7 @@ public class UserController {
 	}
 	
 	
-	
-	/**
 
-	@GetMapping("/personal-parroquia")
-	public String listAll(Model m, Map <String, Object> model) {
-		List<User> listaU = service.listAll();
-		m.addAttribute("listaUsuarios",listaU);
-		model.put("listaCapillas", listaCapillas);
-		
-		return "/personal";
-	}
-	 */
 	
 	@GetMapping("/personal-parroquia")
 	public String listFirstPage(Model m) {

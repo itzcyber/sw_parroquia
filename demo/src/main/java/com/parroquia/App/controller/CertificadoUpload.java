@@ -15,6 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.parroquia.App.models.entities.CertificadosClientes;
 import com.parroquia.App.models.entities.Cliente;
+import com.parroquia.App.models.entities.Role;
+import com.parroquia.App.models.entities.User;
 import com.parroquia.App.models.service.ClienteService;
 
 @Controller
@@ -38,8 +40,8 @@ public class CertificadoUpload {
 	}
 	
 	
-	@GetMapping("/certificados-parroquia")
-	public String clientes(Model m, Map<String, Object> model) {
+	@GetMapping("/certificados/nuevo")
+	public String nuevo(Model m, Map<String, Object> model) {
 		
 		List<Cliente> clientes = clienteService.listAll();
 		m.addAttribute("clientes", clientes);
@@ -48,8 +50,39 @@ public class CertificadoUpload {
 		model.put("listaCertificados", listaCertificados);
 		m.addAttribute("agregar", true);
 		
-		return "certificados";
+		return "/certificados_form";
 	}
+	
+	@GetMapping("/certificados-parroquia")
+	public String clientes(Model m, String keyword, Map<String, Object> model) {
+		
+		//List<Cliente> clientes = clienteService.listAll();
+		
+		List<Cliente> clientes = null;
+		
+		if(keyword != null) {
+			
+			clientes = clienteService.findByKeyword(keyword);
+			m.addAttribute("clientes", clientes);
+			m.addAttribute("cliente", new Cliente());
+			m.addAttribute("clientesFiles", new ArrayList<CertificadosClientes>());
+			model.put("listaCertificados", listaCertificados);
+			m.addAttribute("agregar", true);
+		} else {
+			
+			clientes = clienteService.listAll();
+			
+			m.addAttribute("clientes", clientes);
+			m.addAttribute("cliente", new Cliente());
+			m.addAttribute("clientesFiles", new ArrayList<CertificadosClientes>());
+			model.put("listaCertificados", listaCertificados);
+			m.addAttribute("agregar", true);
+		}
+		
+		
+		return "/certificados";
+	}
+	
 	
 	@PostMapping("/guardar")
 	public String guardar(@ModelAttribute Cliente c, Model m, Map<String, Object> model, RedirectAttributes ra ) {
@@ -82,7 +115,7 @@ public class CertificadoUpload {
 		model.put("listaCertificados", listaCertificados);
 		m.addAttribute("agregar", false);
 		
-		return "certificados";
+		return "certificados_form";
 	}
 	
 	@PostMapping("/actualizar")

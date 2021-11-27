@@ -7,11 +7,13 @@
 
 <title>Home - Parroquia Sagrado Corazón</title>
 
-	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
-	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"> </script>
-	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"> </script>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"> </script>
+<script type="text/javascript"
+	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"> </script>
 
 </head>
 <body>
@@ -36,8 +38,8 @@
 						aria-current="page" th:href="@{/}">Inicio</a></li>
 					<li class="nav-item"><a class="nav-link"
 						th:href="@{/personal-parroquia}">Registro Personal</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/certificados-parroquia}">Registro
-							Certificados</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/certificados-parroquia}">Registro Certificados</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/}">Login</a></li>
 
 				</ul>
@@ -51,26 +53,28 @@
 	<div class="m-4">
 		<h2>Registro Personal Parroquia</h2>
 	</div>
-	
+
 	<div class="m-3">
-		<a th:href="@{/personal/nuevo}" class="btn btn-outline-primary"> Agregar Personal </a>
+		<a th:href="@{/personal/nuevo}" class="btn btn-outline-primary">
+			Agregar Personal </a>
 	</div>
-	
+
 	<div>
-		<form th:action="@{/personal-parroquia/page/1}" class="form-inline m-3">
-			<input type="hidden" name="sortField" th:value="${sortField}" />
-			<input type="hidden" name="sortDir" th:value="${sortDir}" />
-			
-			Búsqueda:&nbsp; 
-			<input type="search" name="keyword" th:value="${keyword}" class="form-control" required/>
-			&nbsp;&nbsp;
+		<form th:action="@{/personal-parroquia/page/1}"
+			class="form-inline m-3">
+			<input type="hidden" name="sortField" th:value="${sortField}" /> <input
+				type="hidden" name="sortDir" th:value="${sortDir}" />
+
+			Búsqueda:&nbsp; <input type="search" name="keyword"
+				th:value="${keyword}" class="form-control" required /> &nbsp;&nbsp;
 			<input type="submit" value="Buscar" class="btn btn-outline-success" />
-			&nbsp;&nbsp;
-			<input type="button" value="limpiar" class="btn btn-outline-secondary" onclick="limpiar()" />
+			&nbsp;&nbsp; <input type="button" value="limpiar"
+				class="btn btn-outline-secondary" onclick="limpiar()" />
 		</form>
 	</div>
 
-	<div th:if="${mensaje != null}" class="alert alert-success text-center m-3">
+	<div th:if="${mensaje != null}"
+		class="alert alert-success text-center m-3">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		[[${mensaje}]]
 	</div>
@@ -82,148 +86,135 @@
 				<tr>
 					<th scope="col">ID</th>
 					<th scope="col">FOTOS</th>
-					
-					<th scope="col">
-						<a th:if="${sortField != 'email'}" class="text-white"
-								th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=email&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"> 
-									EMAIL 
-							</a>
-							<a th:if="${sortField == 'email'}" class="text-white"
-								th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=email&sortDir=' + ${revertirSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"> 
-									EMAIL  
-							</a>
-							
-							<span th:if="${sortField == 'email'}" 
-								th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+
+					<th scope="col"><a th:if="${sortField != 'email'}"
+						class="text-white"
+						th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=email&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+							EMAIL </a> <a th:if="${sortField == 'email'}" class="text-white"
+						th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=email&sortDir=' + ${revertirSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+							EMAIL </a> <span th:if="${sortField == 'email'}"
+						th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 					</th>
-					
-					<th scope="col">
-						<a th:if="${sortField != 'nombre'}" class="text-white"
-							th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=nombre&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"> 
-								NOMBRES 
-						</a>
-						<a th:if="${sortField == 'nombre'}" class="text-white"
-							th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=nombre&sortDir=' + ${revertirSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"> 
-								NOMBRES 
-						</a>
-						
-						<span th:if="${sortField == 'nombre'}" 
-							th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+
+					<th scope="col"><a th:if="${sortField != 'nombre'}"
+						class="text-white"
+						th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=nombre&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+							NOMBRES </a> <a th:if="${sortField == 'nombre'}" class="text-white"
+						th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=nombre&sortDir=' + ${revertirSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+							NOMBRES </a> <span th:if="${sortField == 'nombre'}"
+						th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 					</th>
-					
-					<th scope="col">
-						<a th:if="${sortField != 'apellido'}" class="text-white"
-							th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=apellido&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
-								APELLIDOS 
-						</a>
-						<a th:if="${sortField == 'apellido'}" class="text-white"
-							th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=apellido&sortDir=' + ${revertirSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"> 
-								APELLIDOS
-						</a>
-						
-						<span th:if="${sortField == 'apellido'}" 
-							th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>	
+
+					<th scope="col"><a th:if="${sortField != 'apellido'}"
+						class="text-white"
+						th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=apellido&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+							APELLIDOS </a> <a th:if="${sortField == 'apellido'}"
+						class="text-white"
+						th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=apellido&sortDir=' + ${revertirSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+							APELLIDOS </a> <span th:if="${sortField == 'apellido'}"
+						th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 					</th>
-					
+
 					<th scope="col">ROLES</th>
-					
-					<th scope="col">
-						<a th:if="${sortField != 'enabled'}" class="text-white"
-							th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=enabled&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
-								ESTADOS 
-						</a>
-						<a th:if="${sortField == 'enabled'}" class="text-white"
-							th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=enabled&sortDir=' + ${revertirSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"> 
-								ESTADOS
-						</a>
-						
-						<span th:if="${sortField == 'enabled'}" 
-							th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+
+					<th scope="col"><a th:if="${sortField != 'enabled'}"
+						class="text-white"
+						th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=enabled&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+							ESTADOS </a> <a th:if="${sortField == 'enabled'}" class="text-white"
+						th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=enabled&sortDir=' + ${revertirSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+							ESTADOS </a> <span th:if="${sortField == 'enabled'}"
+						th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 					</th>
-					
-					<th scope="col">
-						<a th:if="${sortField != 'capilla'}" class="text-white"
-								th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=capilla&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
-									CAPILLA 
-							</a>
-							<a th:if="${sortField == 'capilla'}" class="text-white"
-								th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=capilla&sortDir=' + ${revertirSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"> 
-									CAPILLA
-							</a>
-							
-							<span th:if="${sortField == 'capilla'}" 
-								th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+
+					<th scope="col"><a th:if="${sortField != 'capilla'}"
+						class="text-white"
+						th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=capilla&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+							CAPILLA </a> <a th:if="${sortField == 'capilla'}" class="text-white"
+						th:href="@{'/personal-parroquia/page/' + ${actualPage} + '?sortField=capilla&sortDir=' + ${revertirSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+							CAPILLA </a> <span th:if="${sortField == 'capilla'}"
+						th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 					</th>
-					
+
 					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="user : ${listaUsuarios}">
-					<th  scope="row">[[${user.id}]]</th>
-					<td>  
-						<span  th:if="${user.foto == null}" class="fas fa-portrait fa-3x icon-silver"></span>
-						<img th:if="${user.foto != null}" th:src="@{${user.FotosPath}}" 
-						style="width: 100px"/>
-					</td>
+					<th scope="row">[[${user.id}]]</th>
+					<td><span th:if="${user.foto == null}"
+						class="fas fa-portrait fa-3x icon-silver"></span> <img
+						th:if="${user.foto != null}" th:src="@{${user.FotosPath}}"
+						style="width: 100px" /></td>
 					<td>[[${user.email}]]</td>
 					<td>[[${user.nombre}]]</td>
 					<td>[[${user.apellido}]]</td>
 					<td>[[${user.roles}]]</td>
-					
-					<td> <a th:if="${user.enabled == true}" class="fas fa-check-circle fa-2x icon-green" 
-					th:href="@{'/personal/' + ${user.id} + '/enabled/false' }"
-					title="Desactivar este usuario"></a>
-					
-					<a th:if="${user.enabled == false}" class="fas fa-circle fa-2x icon-dark" 
-					th:href="@{'/personal/' + ${user.id} + '/enabled/true'}"
-					title="Activar este usuario"></a> </td>
-					
+
+					<td><a th:if="${user.enabled == true}"
+						class="fas fa-check-circle fa-2x icon-green"
+						th:href="@{'/personal/' + ${user.id} + '/enabled/false' }"
+						title="Desactivar este usuario"></a> <a
+						th:if="${user.enabled == false}"
+						class="fas fa-circle fa-2x icon-dark"
+						th:href="@{'/personal/' + ${user.id} + '/enabled/true'}"
+						title="Activar este usuario"></a></td>
+
 					<td>[[${user.capilla}]]</td>
-					<td> <a class="btn btn-outline-success" th:href="@{'/personal/editar/'+ ${user.id}}" title="Editar este usuario"> Editar </a>
-					&nbsp; 
-					<a class="btn btn-outline-danger link-delete" th:href="@{'/personal/eliminar/'+ ${user.id}}"  
-						th:userID="${user.id}";
-						title="Eliminar este usuario" >Eliminar</a> </td>
-					
-					
+					<td><a class="btn btn-outline-success"
+						th:href="@{'/personal/editar/'+ ${user.id}}"
+						title="Editar este usuario"> Editar </a> &nbsp; <a
+						class="btn btn-outline-danger link-delete"
+						th:href="@{'/personal/eliminar/'+ ${user.id}}"
+						th:userID="${user.id}" ;
+						title="Eliminar este usuario">Eliminar</a>
+					</td>
 				</tr>
 			</tbody>
-			
+
 		</table>
 	</div>
-	
+
 	<div class="text-center m-2" th:if="${totalItems > 0}">
-		<span> Mostrando personal # [[${inicioCount}]] a [[${finCount}]] de [[${totalItems}]] </span>
+		<span> Mostrando personal # [[${inicioCount}]] al
+			[[${finCount}]] de un total [[${totalItems}]] </span>
 	</div>
-	
+
 	<div class="text-center m-2" th:unless="${totalItems > 0}">
 		<span> No se encontraron personal de la parroquia </span>
 	</div>
-	
+
 	<!-- Pagination -->
 	<div th:if="${totalPage > 1}">
 		<nav>
-		  <ul class="pagination justify-content-center">
-		    <li th:class="${actualPage > 1 ? 'page-item' : 'page-item disabled'}">
-		    	<a class="page-link" th:href="@{'/personal-parroquia/page/1 ?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">Primero</a>
-		    </li>
-		    <li th:class="${actualPage > 1 ? 'page-item' : 'page-item disabled'}">
-		    	<a class="page-link" th:href="@{'/personal-parroquia/page/' + ${actualPage - 1} +  '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">Anterior</a>
-		    </li>
-		    
-		    <li th:class="${actualPage != i ? 'page-item' : 'page-item active'}" 
-		    		th:each="i : ${#numbers.sequence(1, totalPage)}">
-		    	<a class="page-link" th:href="@{'/personal-parroquia/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"> [[${i}]] </a>
-		    </li>
-		    
-		    <li th:class="${actualPage < totalPage ? 'page-item' : 'page-item disabled'}">
-		    	<a class="page-link" th:href="@{'/personal-parroquia/page/' + ${actualPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">Siguiente</a>
-		    </li>  
-		    <li th:class="${actualPage < totalPage ? 'page-item' : 'page-item disabled'}">
-		    	<a class="page-link" th:href="@{'/personal-parroquia/page/' + ${totalPage} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">Última</a>
-		    </li>
-		  </ul>
+			<ul class="pagination justify-content-center">
+				<li
+					th:class="${actualPage > 1 ? 'page-item' : 'page-item disabled'}">
+					<a class="page-link"
+					th:href="@{'/personal-parroquia/page/1 ?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">Primero</a>
+				</li>
+				<li
+					th:class="${actualPage > 1 ? 'page-item' : 'page-item disabled'}">
+					<a class="page-link"
+					th:href="@{'/personal-parroquia/page/' + ${actualPage - 1} +  '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">Anterior</a>
+				</li>
+
+				<li th:class="${actualPage != i ? 'page-item' : 'page-item active'}"
+					th:each="i : ${#numbers.sequence(1, totalPage)}"><a
+					class="page-link"
+					th:href="@{'/personal-parroquia/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+						[[${i}]] </a></li>
+
+				<li
+					th:class="${actualPage < totalPage ? 'page-item' : 'page-item disabled'}">
+					<a class="page-link"
+					th:href="@{'/personal-parroquia/page/' + ${actualPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">Siguiente</a>
+				</li>
+				<li
+					th:class="${actualPage < totalPage ? 'page-item' : 'page-item disabled'}">
+					<a class="page-link"
+					th:href="@{'/personal-parroquia/page/' + ${totalPage} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">Última</a>
+				</li>
+			</ul>
 		</nav>
 	</div>
 
@@ -234,28 +225,29 @@
 				Parroquia Sagrado Corazón De jesús &copy; 2021.</span>
 		</div>
 	</footer>
-	
+
 	<!-- Modal Eliminar -->
 	<div class="modal fade text-center" id="confirmModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" >Eliminar registro </h4>
+					<h4 class="modal-title">Eliminar registro</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-				
+
 				<div class="modal-body">
-					<span id="confirmText">  </span>
+					<span id="confirmText"> </span>
 				</div>
-				
+
 				<div class="modal-footer">
 					<a class="btn btn-outline-success" href="" id="yesButton">Si</a>
-					<button type="button" class="btn btn-outline-danger" data-dismiss="modal">No</button>
+					<button type="button" class="btn btn-outline-danger"
+						data-dismiss="modal">No</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<script type="text/javascript">
 		
 		$(document).ready(function(){
@@ -278,8 +270,6 @@
 		}
 		
 	</script>
-	
 
-	
 </body>
 </html>

@@ -64,6 +64,7 @@
 	</style>
 
 </head>
+
 <body>
 
 	<!-- navbar -->
@@ -98,16 +99,29 @@
 	</nav>
 	<!-- FIN navbar -->
 
+	<div class="container-fluid my-5">
+		<h2>Registro Certificados Parroquia</h2>
+	</div>
+				
+		<div class="m-3">
+			<a th:href="@{/certificados/nuevo}" class="btn btn-outline-primary"> Agregar Personal </a>
+		</div>
+				
 	<div>
-		<h2 class="mb-3 mt-3">Parroquia Sagrado Corazón</h2>
+		<form th:action="@{/certificados-parroquia}" class="form-inline m-3">
+			<input type="hidden" name="sortField" th:value="${sortField}" />
+			<input type="hidden" name="sortDir" th:value="${sortDir}" />
+						
+			Búsqueda:&nbsp; 
+			<input type="search" name="keyword" th:value="${keyword}" class="form-control" required/>
+			&nbsp;&nbsp;
+			<input type="submit" value="Buscar" class="btn btn-outline-success" />
+			&nbsp;&nbsp;
+			<input type="button" value="limpiar" class="btn btn-outline-secondary" onclick="limpiar()" />
+		</form>
 	</div>
 
-
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-				
 				<div class="alert alert-success alert-dismissible" th:if="${exito}")>
 				  <button type="button" class="close" data-dismiss="alert">&times;</button>
 				  <strong th:text="${exito}"></strong> 
@@ -117,107 +131,15 @@
 				  <button type="button" class="close" data-dismiss="alert">&times;</button>
 				  <strong th:text="${error}"></strong> 
 				</div>
-				
-				<form th:action="@{${agregar} ? '/guardar' : '/actualizar' }" th:object="${cliente}"  style="max-width: 700px; margin: 0 auto;"
-					method="post" enctype="multipart/form-data">
-					
-					<div class="border border-secondary rounded p-5">
-					
-					<h2 class="pt-2 pb-5">Registrar Certificado</h2>
-					
-						<div class="form-group row">
-							<label class="col-sm-4 col-form-label"> Rut: </label>
-							<div class="col-sm-8"> 
-								<input type="text" class="form-control" th:field="*{rut}" required />
-							</div>	
-						</div>
-						
-						<div class="form-group row">
-							<label class="col-sm-4 col-form-label"> Email: </label>
-							<div class="col-sm-8"> 
-								<input type="email" class="form-control" th:field="*{email}" required minlength="8" maxlength="128" />
-							</div>	
-						</div>
-									
-						<div class="form-group row">
-							<label class="col-sm-4 col-form-label"> Nombres: </label>
-							<div class="col-sm-8"> 
-								<input type="text" class="form-control" th:field="*{nombre}" required minlength="3" maxlength="45" />
-							</div>	
-						</div>
-						
-						<div class="form-group row">
-							<label class="col-sm-4 col-form-label"> Apellidos: </label>
-							<div class="col-sm-8"> 
-								<input type="text" class="form-control" th:field="*{apellido}" required minlength="3" maxlength="45" />
-							</div>	
-						</div>
-						 
-						<div class="form-group row">
-							<label class="col-sm-4 col-form-label"> Tipo de Certifcado: </label>	
-							<div class="col-sm-8">					 
-								<select th:field="*{tipo}" class="form-select mb-4">
-										<option th:each="tipo : ${listaCertificados}" th:value="${tipo}"
-											th:text="${tipo}" />
-								</select>
-							</div>	
-						</div>
-						
-						<div class="form-group row">
-							<label class="col-sm-4 col-form-label"> Subir Certificado: </label>
-							<div class="col-sm-8"> 
-								<input type="file" class="form-control" th:field="*{files}" />
-							</div>	
-						</div>
-						
-						<div class="form-group">
-						
-							<span th:each="file,itrStat : ${clientesFiles}" class="imagecontainer" th:id="'imageindex'+${itrStat.index}"> 
-								<img th:src="@{'/archivo/' + ${file.modifiedFileName}}" style="width: 80px; height: 80px; border-radius: 50%; margin-left: 10px" 
-									class="image" th:if="${file.fileExtension != 'pdf' and file.fileExtension != 'docx'and file.fileExtension != 'doc'}">
-								
-								<img th:src="@{'/images/pdf.jpg'}" style="width: 80px; height: 80px; border-radius: 50%; margin-left: 10px" 
-									class="image" th:if="${file.fileExtension == 'pdf'}">
-									
-								<img th:src="@{'/images/word.png'}" style="width: 80px; height: 80px; border-radius: 50%; margin-left: 10px" 
-									class="image" th:if="${file.fileExtension == 'docx' or file.fileExtension == 'doc'}">
-									<span class="overlay">
-									
-										<a href="#" class="icon image-confirm-delete" title="Borrar archivo" th:attr="data-id=${itrStat.index}, data-name=${file.modifiedFileName}">
-											<i class="fa fa-trash" style="color: red;"></i>
-										</a>
-									
-									</span>
-							</span>
-						
-						</div>
-						
-						<input type="hidden" class="form-control" th:field="*{removefiles}" id="removefiles">
-						<input type="hidden" class="form-control" th:field="*{id}" >
-						
-						<div class="text-center">
-							<button type="submit" th:text="${agregar}?'guardar':'actulaizar'" class="btn btn-outline-primary m-3"></button>
-							<input type="button" value="Cancelar" class="btn btn-outline-secondary" id="botonCancelar"/>
-						</div>
-					
-					</div>
-				
-				</form>
-
-			</div>
-			<div class="col-md-2"></div>
 		</div>
 		
-		<hr/>
+		<div class="container-fluid">
+		<h2  class="my-4">Tabla Certificados</h2>
 		
-		<div class="col-md-12">
-		
-		<h2>Tabla Certificados</h2>
-		
-			<div class="mt-5">
+			<div>
 				
-				<table class="table table-striped table-hover">	
-					<thead>
+				<table class="table table-striped table-hover table-responsive-xl">	
+					<thead class="thead-dark">
 						<tr>
 							<th scope="col">RUT</th>
 							<th scope="col">EMAIL</th>
@@ -243,18 +165,14 @@
 							<a class="btn btn-outline-info btn-xs" 
 							th:href="@{'/detalle/'+${c.id}}"> Detalles</a>&nbsp;&nbsp;&nbsp;
 							 					
-							<a class="btn btn-outline-warning btn-xs" 
+							<a class="btn btn-outline-primary btn-xs" 
 							th:href="@{'/clave-acceso/'+${c.id}}"> Clave </a>
 							</td>
 						</tr>
 					</tbody>
 				</table>
-				
 			</div>
-		
-		</div>
-		
-		
+		</div>		
 	</div>
 
 
@@ -266,43 +184,47 @@
 		</div>
 	</footer>
 
-<script type="text/javascript">
-$(function(){
-	var images = [];
-	$('.image-confirm-delete').on('click', function(e){
-		e.preventDefault();
-		var id = $(this).data('id');
-		var name = $(this).data('name');
-		images.push(name);
-		$('#removefiles').val(images);
-		$('#imageindex'+id).hide(); 	
-	});
-	
-	$('.confirm-delete').on('click', function(e){
-		e.preventDefault();
-		var id = $(this).data('id');
-		var name = $(this).data('name');
-		$("#modal-name").html(name);
-		$("#idModalLink").attr('href','/eliminarCertificado/'+id);
-		$("#myModal").modal();
-	});
+	<script type="text/javascript">
+		$(function(){
+			var images = [];
+			$('.image-confirm-delete').on('click', function(e){
+				e.preventDefault();
+				var id = $(this).data('id');
+				var name = $(this).data('name');
+				images.push(name);
+				$('#removefiles').val(images);
+				$('#imageindex'+id).hide(); 	
+			});
+			
+			$('.confirm-delete').on('click', function(e){
+				e.preventDefault();
+				var id = $(this).data('id');
+				var name = $(this).data('name');
+				$("#modal-name").html(name);
+				$("#idModalLink").attr('href','/eliminarCertificado/'+id);
+				$("#myModal").modal();
+			});
+		
+		});
+		
+		function limpiar() {
+				window.location = "[[@{/certificados-parroquia}]]";
+		}
+	</script>
 
-});
-</script>
-
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body" id="myModalBody">
-				<p>¿Quieres borrar este registro de (<span id="modal-name"></span>)?</p>
-			</div>
-			<div class="modal-footer">
-				<a id="idModalLink" href="#" class="btn btn-primary"> Si </a>
-				<button type="button" class="btn btn-default" data-dismiss=modal > No </button>
+	<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body" id="myModalBody">
+					<p>¿Quieres borrar este registro de (<span id="modal-name"></span>)?</p>
+				</div>
+				<div class="modal-footer">
+					<a id="idModalLink" href="#" class="btn btn-primary"> Si </a>
+					<button type="button" class="btn btn-default" data-dismiss=modal > No </button>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 </body>
 </html>
