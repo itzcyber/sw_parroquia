@@ -2,86 +2,18 @@
 <html xmlns="https://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
 
-<head >
+<head th:replace="fragments :: head('Home - Parroquia Sagrado Corazón')" />
 
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-	
-	<title>[[${titulo}]]</title>
-	
-	<link rel="stylesheet" type="text/css"
-		th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-		<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
-	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"> </script>
-	<script type="text/javascript"
-		th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"> </script>
-</head>
 
 <body>
 
-	<!-- navbar -->
-	<div>
-		
-		<form th:action="@{/logout}" method="post" th:hidden="true" name="logoutForm">
-		<input type="submit" /> 
-		</form>
-		
-		<nav class="navbar navbar-expand-lg navbar-light"
-			style="background-color: #f0ad4e;">
-			<div class="container-fluid">
-	
-				<a class="navbar-brand" th:href="@{/}">Parroquia Sagrado Corazón</a>
-	
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#topNavbar">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-	
-				<div class="collapse navbar-collapse" id="topNavbar">
-	
-					<ul class="navbar-nav ml-auto mb-2 mb-lg-0 text-uppercase">
-	
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" th:href="@{/}">Inicio</a></li>
-						<li class="nav-item"><a class="nav-link"
-							th:href="@{/personal-parroquia}">Registro Personal</a></li>
-						<li class="nav-item"><a class="nav-link"
-							th:href="@{/certificados-parroquia}">Registro Certificados</a></li>
-						
-						<li>
-							<span class="fas fa-user fa-2x icon-silver">  </span>
-						</li>
-						
-						<li class="nav-item dropdown"> 
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown"
-								sec:authentication="principal.fullname">Registro Certificados</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" id="logoutLink" href=""> Cerrar Sesión </a>
-							</div>
-						</li>
-	
-					</ul>
-	
-				</div>
-	
-			</div>
-		</nav>
-	</div>
-	<!-- FIN navbar -->
+<div th:replace="navegacion :: menu"></div>	
 
 	<div class="container-fluid">
-		<h1>Bienvenidos al club</h1>
+		<h1>Bienvenidos a la parroquia Sagrado Corazón de Jesús</h1>
 	</div>
 
-	<!-- Footer -->
-	<footer class=" m-5 mb-0">
-		<div class="container d-flex justify-content-center">
-			<span class="text-dark">Todos Los Derechos Reservados -
-				Parroquia Sagrado Corazón De jesús &copy; 2021.</span>
-		</div>
-	</footer>
+	<div th:replace="fragments :: footer"></div>
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -91,5 +23,6 @@
 			});
 		});
 	</script>
+
 </body>
 </html>

@@ -1,62 +1,11 @@
 <!doctype html>
 <html xmlns="https://www.thymeleaf.org" lang="es">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 
-<title>Certificados - Parroquia Sagrado Corazón</title>
+<head th:replace="fragments :: head('Crear Clave Acceso - Parroquia Sagrado Corazón')" />
 
-
-<!-- Bootstrap CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
-	crossorigin="anonymous">
-
-<link rel="stylesheet" type="text/css"
-	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
-<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"> </script>
-<script type="text/javascript"
-	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"> </script>
-
-</head>
 <body>
 
-	<!-- navbar -->
-	<nav class="navbar navbar-expand-lg navbar-light"
-		style="background-color: #f0ad4e;">
-		<div class="container-fluid">
-
-			<a class="navbar-brand" th:href="@{/}">Parroquia Sagrado Corazón</a>
-
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#topNavbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="topNavbar">
-
-				<ul class="navbar-nav ml-auto mb-2 mb-lg-0 text-uppercase">
-
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" th:href="@{/}">Inicio</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/personal-parroquia}">Registro Personal</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/certificados-parroquia}">Registro Certificados</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/}">Login</a></li>
-
-				</ul>
-
-			</div>
-
-		</div>
-	</nav>
-	<!-- FIN navbar -->
+	<div th:replace="navegacion :: menu"></div>	
 
 	<div class="container my-5">
 		<div th:if="${mensaje != null}"
@@ -104,13 +53,7 @@
 		</div>
 	</div>
 
-	<!-- Footer -->
-	<footer>
-		<div class="container d-flex justify-content-center">
-			<span class="text-dark">Todos Los Derechos Reservados -
-				Parroquia Sagrado Corazón De jesús &copy; 2021.</span>
-		</div>
-	</footer>
+	<div th:replace="fragments :: footer"></div>
 
 	<script type="text/javascript">
 		$(document).ready(function() {

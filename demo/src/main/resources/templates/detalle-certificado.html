@@ -1,19 +1,7 @@
 <!doctype html>
 <html xmlns="https://www.thymeleaf.org" lang="es">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 
-<title>Certificados - Parroquia Sagrado Corazón</title>
-
-<link rel="stylesheet" type="text/css"
-	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
-<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"> </script>
-<script type="text/javascript"
-	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"> </script>
+<head th:replace="fragments :: head('Detalle Certificado - Parroquia Sagrado Corazón')" />
 
 <style>
 .imagecontainer {
@@ -55,40 +43,9 @@
 }
 </style>
 
-</head>
 <body>
 
-	<!-- navbar -->
-	<nav class="navbar navbar-expand-lg navbar-light"
-		style="background-color: #f0ad4e;">
-		<div class="container-fluid">
-
-			<a class="navbar-brand" th:href="@{/}">Parroquia Sagrado Corazón</a>
-
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#topNavbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="topNavbar">
-
-				<ul class="navbar-nav ml-auto mb-2 mb-lg-0 text-uppercase">
-
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" th:href="@{/}">Inicio</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/personal-parroquia}">Registro Personal</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/certificados-parroquia}">Registro Certificados</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/}">Login</a></li>
-
-				</ul>
-
-			</div>
-
-		</div>
-	</nav>
-	<!-- FIN navbar -->
+	<div th:replace="navegacion :: menu"></div>	
 
 	<div>
 		<h2 class="mb-3 mt-3">Detalles</h2>
@@ -162,13 +119,7 @@
 		</div>
 	</div>
 
-	<!-- Footer -->
-	<footer class=" m-5 mb-0">
-		<div class="container d-flex justify-content-center">
-			<span class="text-dark">Todos Los Derechos Reservados -
-				Parroquia Sagrado Corazón De jesús &copy; 2021.</span>
-		</div>
-	</footer>
+	<div th:replace="fragments :: footer"></div>
 
 	<script type="text/javascript">
 		
@@ -181,7 +132,7 @@
 				fileSize = this.files[0].size;
 				
 				if(fileSize > 1048576) {
-					this.setCustomValidity("¡Debes elegir una imagen de menos de 1 MB!");
+					this.setCustomValidity("�Debes elegir una imagen de menos de 1 MB!");
 					this.reportValidity();
 				} else {
 					mostrarImagenThumbnail(this);

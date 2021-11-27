@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 
 </head>
+
 <body>
 
 	<div class="container-fluid mt-5">
@@ -46,13 +47,7 @@
 		
 	</div>
 
-	<!-- Footer -->
-	<footer class=" m-5 mb-0">
-		<div class="container d-flex justify-content-center">
-			<span class="text-dark">Todos Los Derechos Reservados -
-				Parroquia Sagrado Corazón De jesús &copy; 2021.</span>
-		</div>
-	</footer>
+	<div th:replace="fragments :: footer"></div>
 
 </body>
 </html>
