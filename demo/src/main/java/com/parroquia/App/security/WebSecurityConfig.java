@@ -48,6 +48,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		protected void configure(HttpSecurity http) throws Exception {
 			
 			http.authorizeRequests()
+			.antMatchers("/personal/**").hasAuthority("Administrador")
+			.antMatchers("/personal-parroquia/**").hasAuthority("Administrador")
+			.antMatchers("/certificados-parroquia/**").hasAuthority("Secretaria")
+			.antMatchers("/certificados/**").hasAuthority("Secretaria")
+			.antMatchers("/editarCliente/**").hasAuthority("Secretaria")
+			.antMatchers("/detalle/**").hasAuthority("Secretaria")
+			.antMatchers("/clave-acceso/**").hasAuthority("Secretaria")
 			.anyRequest().authenticated()
 			.and()
 			.formLogin()

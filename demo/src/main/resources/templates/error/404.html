@@ -2,18 +2,18 @@
 <html xmlns="https://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
 
-<head th:replace="fragments :: head('Home - Parroquia Sagrado Corazón')" />
-
+<head th:replace="fragments :: head('Error - Parroquia Sagrado Corazón')" />
 
 <body>
 
 <div th:replace="navegacion :: menu"></div>	
 
-	<div class="container-fluid">
-		<h2>Bienvenidos a la parroquia Sagrado Corazón de Jesús</h2>
+	<div class="container-fluid m-5">
+		
+		 <h2> Lo sentimos, la página solicitada no se pudo encontrar. </h2> 
+
+		
 	</div>
-	
-	<span sec:authentication="principal.authorities"></span>
 
 	<div th:replace="fragments :: footer"></div>
 	

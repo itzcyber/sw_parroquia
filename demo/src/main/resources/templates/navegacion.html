@@ -27,9 +27,11 @@
 	
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" th:href="@{/}">Inicio</a></li>
-						<li class="nav-item"><a class="nav-link"
+							
+						<li class="nav-item"><a class="nav-link" sec:authorize="hasAuthority('Administrador')"
 							th:href="@{/personal-parroquia}">Registro Personal</a></li>
-						<li class="nav-item"><a class="nav-link"
+							
+						<li class="nav-item"><a class="nav-link" sec:authorize="hasAuthority('Secretaria')"
 							th:href="@{/certificados-parroquia}">Registro Certificados</a></li>
 						
 						<li>
@@ -52,6 +54,7 @@
 		</nav>
 	</div>
 	<!-- FIN navbar -->
+	
 	
 
 </body>
