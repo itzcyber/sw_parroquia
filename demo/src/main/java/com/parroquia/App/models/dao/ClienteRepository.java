@@ -9,7 +9,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.parroquia.App.models.entities.Cliente;
-import com.parroquia.App.models.entities.User;
 
 public interface ClienteRepository extends CrudRepository<Cliente, Integer>{
 

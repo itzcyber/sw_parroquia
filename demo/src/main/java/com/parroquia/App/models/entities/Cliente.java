@@ -69,7 +69,6 @@ public class Cliente {
 	private List<String> removefiles = new ArrayList<String>();
 	
 
-
 	public Cliente() {
 		
 	}
