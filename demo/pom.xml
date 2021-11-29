@@ -12,6 +12,7 @@
 	<groupId>com.seminario</groupId>
 	<artifactId>app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>demo</name>
 	<description>Demo proyecto parrouia para seminario INACAP</description>
 	<properties>

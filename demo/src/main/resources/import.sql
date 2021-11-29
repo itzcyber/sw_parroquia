@@ -10,3 +10,5 @@ INSERT INTO `parroquiadb`.`users_roles` (`user_id`, `role_id`) VALUES ('1', '2')
 INSERT INTO `parroquiadb`.`users_roles` (`user_id`, `role_id`) VALUES ('2', '1');
 INSERT INTO `parroquiadb`.`users_roles` (`user_id`, `role_id`) VALUES ('3', '2');
 
+INSERT INTO `parroquiadb`.`usuarios_clientes` (`id`, `apellido`, `email`, `nombre`, `rut`, `tipo`, `token`) VALUES ('1', 'Soprano', 'juan@gmail.com', 'Raymone', '10.222.232.k', 'Bautizo', '4f9d22f95ca4a2dc9bb0d39c91aba');
+

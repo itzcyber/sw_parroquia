@@ -58,7 +58,7 @@ public class Cliente {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
 	
-	@Column(name = "clave_acceso")
+	@Column(name = "token")
 	private String token;
 
 
