@@ -1,0 +1,26 @@
+services:
+  app:
+    image: 'app:latest'
+    build:
+      context: .
+    container_name: parroquia
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/parroquiadb?serverTimezone=America/Santiago&allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=sasa
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+      - SPRING_JPA_SHOW_SQL=true
+    ports:
+      - "8080:8282"
+          
+  db:
+    image: 'mysql:8'
+    container_name: db
+    environment:
+      - MYSQL_ROOT_PASSWORD=sasa
+      - MYSQL_DATABASE=parroquiadb
+     
+    ports: 
+      - "3307:3306"
