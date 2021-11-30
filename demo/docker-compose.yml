@@ -12,6 +12,9 @@ services:
       - SPRING_DATASOURCE_PASSWORD=sasa
       - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
       - SPRING_JPA_SHOW_SQL=true
+      - SPRING.THYMELEAF.PREFIX=classpath:/templates/
+      - SPRING.THYMELEAF.PREFIX=.html
+      
     ports:
       - "8080:8282"
           

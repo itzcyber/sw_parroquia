@@ -15,10 +15,6 @@ public interface UserRepository extends PagingAndSortingRepository<User, Integer
 	@Query("SELECT u FROM User u WHERE u.email = :email")
 	public User getUserByEmail(@Param("email") String email);
 	
-	@Query("SELECT c FROM Cliente c WHERE c.email = :email AND c.token = :token")
-	public Cliente getUserByAuthenticationCliente(@Param("email") String email, @Param("token") String token);
-	
-	
 	public Long countById(Integer id);
 	
 	@Query("SELECT u FROM User u WHERE CONCAT(u.id, '', u.email, '', u.nombre, '',"

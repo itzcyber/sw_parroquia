@@ -50,7 +50,7 @@ public class CertificadoUpload {
 		model.put("listaCertificados", listaCertificados);
 		m.addAttribute("agregar", true);
 		
-		return "/certificados_form";
+		return "certificados_form";
 	}
 	
 	@GetMapping("/certificados-parroquia")
@@ -80,7 +80,7 @@ public class CertificadoUpload {
 		}
 		
 		
-		return "/certificados";
+		return "certificados";
 	}
 	
 	
@@ -156,7 +156,7 @@ public class CertificadoUpload {
 		m.addAttribute("cliente", c);
 		m.addAttribute("clientesFiles", certificadosClientes);
 		
-		return "/detalle-certificado";
+		return "detalle-certificado";
 	}
 	
 }
